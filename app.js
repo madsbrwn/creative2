@@ -2,7 +2,7 @@
 
     function login(callback) {
         var CLIENT_ID = '1d1477f7b6ab40648feb09704216b402';
-        var REDIRECT_URI = 'http://cs260.madsbrwn.com/creatives/creative2/main.html';
+        var REDIRECT_URI = 'http://cs260.madsbrwn.com/creatives/creative2/index.html';
         function getLoginURL(scopes) {
             return 'https://accounts.spotify.com/authorize?client_id=' + CLIENT_ID +
               '&redirect_uri=' + encodeURIComponent(REDIRECT_URI) +
@@ -43,7 +43,7 @@
     }
 
     var templateSource = document.getElementById('result-template').innerHTML,
-        template = Handlebars.compile(templateSource),
+        // template = Handlebars.compile(templateSource),
         resultsPlaceholder = document.getElementById('result'),
         loginButton = document.getElementById('btn-login');
 
@@ -52,7 +52,7 @@
             getUserData(accessToken)
                 .then(function(response) {
                     loginButton.style.display = 'none';
-                    resultsPlaceholder.innerHTML = template(response);
+                    // resultsPlaceholder.innerHTML = template(response);
                 });
             });
     });
