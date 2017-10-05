@@ -2,11 +2,11 @@
 
     function login(callback) {
         var CLIENT_ID = '1d1477f7b6ab40648feb09704216b402';
-        var REDIRECT_URI = 'http://cs260.madsbrwn.com/creatives/creative2/index.html';
+        var REDIRECT_URI = 'http://cs260.madsbrwn.com/creatives/creative2/main.html';
         function getLoginURL(scopes) {
             return 'https://accounts.spotify.com/authorize?client_id=' + CLIENT_ID +
               '&redirect_uri=' + encodeURIComponent(REDIRECT_URI) +
-              '&scope=' + encodeURIComponent(scopes.join(' ')) +
+              '&scope=' + 'user-top-read' +
               '&response_type=token';
         }
 
@@ -26,7 +26,7 @@
             }
         }, false);
 
-        var w = window.open(url,
+        var w = location.assign(url,
                             'Spotify',
                             'menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left
                            );
@@ -42,17 +42,13 @@
         });
     }
 
-    var templateSource = document.getElementById('result-template').innerHTML,
-        // template = Handlebars.compile(templateSource),
-        resultsPlaceholder = document.getElementById('result'),
-        loginButton = document.getElementById('btn-login');
+    var loginButton = document.getElementById('btn-login');
 
     loginButton.addEventListener('click', function() {
         login(function(accessToken) {
             getUserData(accessToken)
                 .then(function(response) {
                     loginButton.style.display = 'none';
-                    // resultsPlaceholder.innerHTML = template(response);
                 });
             });
     });
