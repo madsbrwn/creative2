@@ -1,4 +1,4 @@
-var track_url = 'https://api.spotify.com/v1/me/top/tracks';
+var track_url = 'https://api.spotify.com/v1/me';
 
 var token = window.location.hash.substr(1);
 var accessToken = {};
@@ -8,13 +8,19 @@ $.each(token.substr(0).split('&'), function(i, elem) {
    accessToken[parts[0]] = parts[1];
 });
 
+console.log(accessToken['access_token']);
+var access = accessToken['access_token'];
+
 $.ajax({
     url : track_url,
     headers : {
-      'X-Requested-With': 'XMLHttpRequest',
-      'Authorization': 'Bearer ' + accessToken['access_token']
+      'Access-Control-Allow-Headers': 'Authorization',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + access,
+      'Accept': 'application/json'
     },
-    success : function(response) {
+    datatype: 'jsonp',
+    success : function(parsed_json) {
       console.log("it worked?");
     }
 });
