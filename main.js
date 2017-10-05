@@ -11,7 +11,8 @@ $.each(token.substr(0).split('&'), function(i, elem) {
 $.ajax({
     url : track_url,
     headers : {
-      'X-Requested-With': 'XMLHttpRequest',
+      // 'X-Requested-With': 'XMLHttpRequest',
+      'Accept': 'application/json',
       'Authorization': 'Bearer ' + accessToken['access_token']
     },
     success : function(response) {
