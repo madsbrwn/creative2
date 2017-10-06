@@ -2,37 +2,41 @@ var id = {};
 var imgurls = {};
 
 $(document).ready(function() {
-  for (var i = 0; i < 5; ++i) {
-    id[i] = getIDs();
-    imgurls[i] = getURLs(id[i]);
- }
+	var imgId = "img";
+
+    for (var i = 0; i < 5; ++i) {
+        id[i] = getIDs();
+        imgurls[i] = getURLs(id[i]);
+        document.getElementById(imgId + i.toString()).src = imgurls[i];
+    }
+
 });
 
-function getURLs(idstr){
-  var url = 'https://icanhazdadjoke.com/j/';
-  console.log(idstr);
-  url += idstr;
-  url += '.png';
-  console.log(url);
-  return url;
+function getURLs(idstr) {
+    var url = 'https://icanhazdadjoke.com/j/';
+    console.log(idstr);
+    url += idstr;
+    url += '.png';
+    console.log(url);
+    return url;
 }
 
 function getIDs() {
-  var jokeid;
+    var jokeid;
 
-  $.ajax({
-    url : 'https://icanhazdadjoke.com/',
-    datatype : 'json',
-    headers : {
-      'Accept' : 'application/json'
-    },
-    async : false,
-    success : function(parsed_json) {
-      jokeid = parsed_json['id'];
-      return jokeid;
-    }
-  })
-  return jokeid;
+    $.ajax({
+        url: 'https://icanhazdadjoke.com/',
+        datatype: 'json',
+        headers: {
+            'Accept': 'application/json'
+        },
+        async: false,
+        success: function(parsed_json) {
+            jokeid = parsed_json['id'];
+            return jokeid;
+        }
+    })
+    return jokeid;
 }
 /*(function() {
 
