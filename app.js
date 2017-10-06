@@ -1,4 +1,22 @@
-(function() {
+var id = {};
+
+for (var i = 0; i < 5; ++i) {
+  $.ajax({
+    url : 'https://icanhazdadjoke.com/',
+    datatype : 'json',
+    headers : {
+      'Accept' : 'application/json'
+    },
+    success : function(parsed_json) {
+      id[i] = parsed_json['id'];
+console.log(i);
+console.log(id[i]);
+    }
+  });
+}
+
+
+/*(function() {
 
     function login(callback) {
         var CLIENT_ID = '1d1477f7b6ab40648feb09704216b402';
@@ -54,3 +72,4 @@
     });
 
 })();
+*/
