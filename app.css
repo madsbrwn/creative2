@@ -1,9 +1,42 @@
+@import url('https://fonts.googleapis.com/css?family=Muli');
+
+body {
+  font-family: 'Muli', Helvetica, sans-serif!important;
+  background: #E8F5D0;
+  color: #1B3277;
+}
+
 .container {
   width: 90%;
   max-width: 900px;
   margin: auto;
 }
 
-.col {
-  width: 50%;
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+#myCarousel {
+  background: #F8FEEC;
+  margin: 20px!important;
+  width: 100%;
+  max-width: 800px;
+  min-width: 400px;
+  margin: auto;
+  height: 30vw;
+}
+
+.carousel-inner img {
+  width: 100%; /* Set width to 100% */
+  margin: auto;
+  height: 100%;
+}
+
+/* Hide the carousel text when the screen is less than 600 pixels wide */
+@media (max-width: 600px) {
+.carousel-caption {
+  display: none;
+}
 }
