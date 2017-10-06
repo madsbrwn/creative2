@@ -1,21 +1,39 @@
 var id = {};
+var imgurls = {};
 
-for (var i = 0; i < 5; ++i) {
+$(document).ready(function() {
+  for (var i = 0; i < 5; ++i) {
+    id[i] = getIDs();
+    imgurls[i] = getURLs(id[i]);
+ }
+});
+
+function getURLs(idstr){
+  var url = 'https://icanhazdadjoke.com/j/';
+  console.log(idstr);
+  url += idstr;
+  url += '.png';
+  console.log(url);
+  return url;
+}
+
+function getIDs() {
+  var jokeid;
+
   $.ajax({
     url : 'https://icanhazdadjoke.com/',
     datatype : 'json',
     headers : {
       'Accept' : 'application/json'
     },
+    async : false,
     success : function(parsed_json) {
-      id[i] = parsed_json['id'];
-console.log(i);
-console.log(id[i]);
+      jokeid = parsed_json['id'];
+      return jokeid;
     }
-  });
+  })
+  return jokeid;
 }
-
-
 /*(function() {
 
     function login(callback) {
